@@ -14,7 +14,11 @@ import type { Request, Response } from 'express'
 import { lastValueFrom } from 'rxjs'
 
 import { AuthClientGrpc } from './auth.grpc'
-import { SendOtpRequest, TelegramVerifyRequest } from './dto'
+import {
+	SendOtpRequest,
+	TelegramFinalizeRequest,
+	TelegramVerifyRequest
+} from './dto'
 import { VerifyOtpRequest } from './dto'
 
 @Controller('auth')
@@ -141,5 +145,27 @@ export class AuthController {
 		}
 
 		throw new Error('Invalid Telegram login response')
+	}
+
+	@Post('telegram/finalize')
+	@HttpCode(HttpStatus.OK)
+	async finalizeTelegramLogin(
+		@Body() dto: TelegramFinalizeRequest,
+		@Res({ passthrough: true }) res: Response
+	) {
+		const { sessionId } = dto
+		const { accessToken, refreshToken } = await lastValueFrom(
+			this.client.telegramConsume({ sessionId })
+		)
+
+		res.cookie('refreshToken', refreshToken, {
+			httpOnly: true,
+			secure: this.configService.get('NODE_ENV') !== 'development',
+			domain: this.configService.getOrThrow<string>('COOKIES_DOMAIN'),
+			sameSite: 'lax',
+			maxAge: 30 * 24 * 60 * 60 * 1000
+		})
+
+		return { accessToken }
 	}
 }

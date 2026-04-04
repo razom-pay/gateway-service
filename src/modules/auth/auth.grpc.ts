@@ -4,13 +4,14 @@ import type {
 	AuthServiceClient,
 	RefreshRequest,
 	SendOtpRequest,
+	TelegramConsumeRequest,
 	TelegramVerifyRequest,
 	VerifyOtpRequest
 } from '@razom-pay/contracts/gen/auth'
 
 @Injectable()
 export class AuthClientGrpc implements OnModuleInit {
-	private authService: AuthServiceClient
+	private authService!: AuthServiceClient
 
 	constructor(@Inject('AUTH_PACKAGE') private readonly client: ClientGrpc) {}
 
@@ -37,5 +38,9 @@ export class AuthClientGrpc implements OnModuleInit {
 
 	telegramVerify(request: TelegramVerifyRequest) {
 		return this.authService.telegramVerify(request)
+	}
+
+	telegramConsume(request: TelegramConsumeRequest) {
+		return this.authService.telegramConsume(request)
 	}
 }
