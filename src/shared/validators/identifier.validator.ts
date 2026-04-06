@@ -3,7 +3,8 @@ import {
 	ValidatorConstraint,
 	ValidatorConstraintInterface
 } from 'class-validator'
-import { SendOtpRequest } from 'src/modules/auth/dto'
+
+import { SendOtpRequest } from '../../modules/auth/dto'
 
 @ValidatorConstraint({ name: 'IdentifierValidator', async: false })
 export class IdentifierValidator implements ValidatorConstraintInterface {

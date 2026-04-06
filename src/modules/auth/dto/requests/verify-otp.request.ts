@@ -7,7 +7,8 @@ import {
 	Length,
 	Validate
 } from 'class-validator'
-import { IdentifierValidator } from 'src/shared/validators/identifier.validator'
+
+import { IdentifierValidator } from '../../../../shared/validators'
 
 export class VerifyOtpRequest {
 	@ApiProperty({
@@ -15,7 +16,7 @@ export class VerifyOtpRequest {
 	})
 	@IsString()
 	@Validate(IdentifierValidator)
-	identifier: string
+	identifier!: string
 
 	@ApiProperty({
 		example: '123456'
@@ -23,12 +24,12 @@ export class VerifyOtpRequest {
 	@IsNotEmpty()
 	@IsNumberString()
 	@Length(6, 6)
-	code: string
+	code!: string
 
 	@ApiProperty({
 		enum: ['phone', 'email'],
 		example: 'email'
 	})
 	@IsEnum(['phone', 'email'])
-	type: 'phone' | 'email'
+	type!: 'phone' | 'email'
 }

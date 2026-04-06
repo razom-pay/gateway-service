@@ -9,8 +9,8 @@ import { Reflector } from '@nestjs/core'
 import type { Role } from '@razom-pay/contracts/gen/account'
 import type { Request } from 'express'
 import { lastValueFrom } from 'rxjs'
-import { AccountClientGrpc } from 'src/modules/account/account.grpc'
 
+import { AccountClientGrpc } from '../../modules/account/account.grpc'
 import { ROLES_KEY } from '../decorators'
 
 @Injectable()

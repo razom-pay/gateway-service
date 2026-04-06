@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { IsEnum, IsString, Validate } from 'class-validator'
-import { IdentifierValidator } from 'src/shared/validators/identifier.validator'
+
+import { IdentifierValidator } from '../../../../shared/validators'
 
 export class SendOtpRequest {
 	@ApiProperty({
@@ -8,12 +9,12 @@ export class SendOtpRequest {
 	})
 	@IsString()
 	@Validate(IdentifierValidator)
-	identifier: string
+	identifier!: string
 
 	@ApiProperty({
 		enum: ['phone', 'email'],
 		example: 'email'
 	})
 	@IsEnum(['phone', 'email'])
-	type: 'phone' | 'email'
+	type!: 'phone' | 'email'
 }
