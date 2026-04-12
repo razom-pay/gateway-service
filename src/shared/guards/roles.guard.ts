@@ -8,7 +8,6 @@ import {
 import { Reflector } from '@nestjs/core'
 import type { Role } from '@razom-pay/contracts/gen/account'
 import type { Request } from 'express'
-import { lastValueFrom } from 'rxjs'
 
 import { AccountClientGrpc } from '../../modules/account/account.grpc'
 import { ROLES_KEY } from '../decorators'
@@ -33,9 +32,9 @@ export class RolesGuard implements CanActivate {
 
 		if (!user) throw new ForbiddenException('User context is missing')
 
-		const account = await lastValueFrom(
-			this.accountClientGrpc.getAccount({ id: user.id })
-		)
+		const account = await this.accountClientGrpc.call('getAccount', {
+			id: user.id
+		})
 
 		if (!account) throw new NotFoundException('Account not found')
 
