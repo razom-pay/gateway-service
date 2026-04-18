@@ -18,7 +18,7 @@ services:
             timeout: 10s
             retries: 5
         volumes:
-            - ../logs/gateway:/var/log/services/gateway
+            - ../.logs/gateway:/var/log/services/gateway
         networks:
             - razom-pay
 
