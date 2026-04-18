@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { PassportModule } from '@razom-pay/passport'
+import { LoggerModule } from 'nestjs-pino'
 
 import { AccountModule } from '../modules/account/account.module'
 import { AuthModule } from '../modules/auth/auth.module'
@@ -20,6 +21,22 @@ import { getPassportConfig } from './config'
 				`.env.${process.env.NODE_ENV}`,
 				'.env'
 			]
+		}),
+		LoggerModule.forRoot({
+			pinoHttp: {
+				level: process.env.LOG_LEVEL,
+				transport: {
+					target: 'pino/file',
+					options: {
+						destination: '/var/log/services/gateway/gateway.log',
+						mkdir: true
+					}
+				},
+				messageKey: 'msg',
+				customProps: () => ({
+					service: 'gateway-service'
+				})
+			}
 		}),
 		PassportModule.registerAsync({
 			useFactory: getPassportConfig,
