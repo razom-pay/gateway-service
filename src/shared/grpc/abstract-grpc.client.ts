@@ -1,4 +1,4 @@
-import { OnModuleInit } from '@nestjs/common'
+import { type OnModuleInit } from '@nestjs/common'
 import { ClientGrpc } from '@nestjs/microservices'
 import { lastValueFrom, type Observable } from 'rxjs'
 

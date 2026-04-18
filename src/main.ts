@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser'
 
 import { AppModule } from './core/app.module'
 import { getCorsConfig, getValidationPipeConfig } from './core/config'
+import './observability/tracing'
 import { GrpcExceptionFilter } from './shared/filters'
 
 async function bootstrap() {
