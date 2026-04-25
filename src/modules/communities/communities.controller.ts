@@ -18,7 +18,7 @@ import {
 
 import { CurrentUser, Protected } from '../../shared/decorators'
 
-import { CommunityClientGrpc } from './community.grpc'
+import { CommunitiesClientGrpc } from './communities.grpc'
 import {
 	AssignRoleRequest,
 	BanMemberRequest,
@@ -28,8 +28,8 @@ import {
 } from './dto'
 
 @Controller('communities')
-export class CommunityController {
-	constructor(private readonly client: CommunityClientGrpc) {}
+export class CommunitiesController {
+	constructor(private readonly client: CommunitiesClientGrpc) {}
 
 	@ApiBearerAuth()
 	@ApiOperation({ summary: 'Create community' })

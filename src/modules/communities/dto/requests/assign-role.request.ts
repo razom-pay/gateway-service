@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { CommunityRole } from '@razom-pay/contracts/gen/community'
+import { CommunityRole } from '@razom-pay/contracts/gen/communities'
 import { IsEnum } from 'class-validator'
 
 export class AssignRoleRequest {

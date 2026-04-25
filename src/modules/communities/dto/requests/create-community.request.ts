@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
-import { CommunityVisibility } from '@razom-pay/contracts/gen/community'
+import { CommunityVisibility } from '@razom-pay/contracts/gen/communities'
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator'
 
 export class CreateCommunityRequest {

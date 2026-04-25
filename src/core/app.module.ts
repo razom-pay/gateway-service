@@ -5,7 +5,7 @@ import { LoggerModule } from 'nestjs-pino'
 
 import { AccountModule } from '../modules/account/account.module'
 import { AuthModule } from '../modules/auth/auth.module'
-import { CommunityModule } from '../modules/community/community.module'
+import { CommunitiesModule } from '../modules/communities/communities.module'
 import { UsersModule } from '../modules/users/users.module'
 import { ObservabilityModule } from '../observability/observability.module'
 
@@ -46,7 +46,7 @@ import { getPassportConfig } from './config'
 		ObservabilityModule,
 		AuthModule,
 		AccountModule,
-		CommunityModule,
+		CommunitiesModule,
 		UsersModule
 	],
 	controllers: [AppController],
