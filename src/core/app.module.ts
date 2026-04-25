@@ -29,7 +29,10 @@ import { getPassportConfig } from './config'
 				transport: {
 					target: 'pino/file',
 					options: {
-						destination: '/var/log/services/gateway/gateway.log',
+						destination:
+							process.platform === 'linux'
+								? '/var/log/services/gateway/gateway.log'
+								: '.logs/gateway/gateway.log',
 						mkdir: true
 					}
 				},
