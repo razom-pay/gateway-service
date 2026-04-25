@@ -23,12 +23,12 @@ export class CommunityResponse {
 	locationHouse?: string
 
 	@ApiPropertyOptional({
-		example: 'https://cdn.razom-pay.ua/community/avatar.png'
+		example: 'https://cdn.razom-pay.ua/communities/avatar.png'
 	})
 	avatar?: string
 
 	@ApiPropertyOptional({
-		example: 'https://cdn.razom-pay.ua/community/cover.png'
+		example: 'https://cdn.razom-pay.ua/communities/cover.png'
 	})
 	cover?: string
 

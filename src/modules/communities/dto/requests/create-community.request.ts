@@ -36,14 +36,14 @@ export class CreateCommunityRequest {
 	locationHouse?: string
 
 	@ApiPropertyOptional({
-		example: 'https://cdn.razom-pay.ua/community/avatar.png'
+		example: 'https://cdn.razom-pay.ua/communities/avatar.png'
 	})
 	@IsOptional()
 	@IsString()
 	avatar?: string
 
 	@ApiPropertyOptional({
-		example: 'https://cdn.razom-pay.ua/community/cover.png'
+		example: 'https://cdn.razom-pay.ua/communities/cover.png'
 	})
 	@IsOptional()
 	@IsString()

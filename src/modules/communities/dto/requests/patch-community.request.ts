@@ -34,14 +34,14 @@ export class PatchCommunityRequest {
 	locationHouse?: string
 
 	@ApiPropertyOptional({
-		example: 'https://cdn.razom-pay.ua/community/new-avatar.png'
+		example: 'https://cdn.razom-pay.ua/communities/new-avatar.png'
 	})
 	@IsOptional()
 	@IsString()
 	avatar?: string
 
 	@ApiPropertyOptional({
-		example: 'https://cdn.razom-pay.ua/community/new-cover.png'
+		example: 'https://cdn.razom-pay.ua/communities/new-cover.png'
 	})
 	@IsOptional()
 	@IsString()
