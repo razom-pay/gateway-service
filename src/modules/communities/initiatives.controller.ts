@@ -1,19 +1,20 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common'
+import { Controller, Get, Param, Post, Body } from '@nestjs/common'
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger'
 
 import { CurrentUser } from '../../shared/decorators/current-user.decorator'
 import { Protected } from '../../shared/decorators/protected.decorators'
+import { EscrowClientGrpc } from '../escrow/escrow.grpc'
 
 import { CommunitiesClientGrpc } from './communities.grpc'
-import {
-	ContributeToInitiativeDto,
-	CreateInitiativeDto
-} from './dto/requests/initiatives.dto'
+import { CreateInitiativeDto } from './dto/requests/initiatives.dto'
 
 @ApiTags('Communities / Initiatives')
 @Controller('communities/:communityId/initiatives')
 export class InitiativesController {
-	constructor(private readonly communitiesClient: CommunitiesClientGrpc) {}
+	constructor(
+		private readonly communitiesClient: CommunitiesClientGrpc,
+		private readonly escrowClient: EscrowClientGrpc
+	) {}
 
 	@ApiBearerAuth()
 	@Post()
@@ -24,12 +25,19 @@ export class InitiativesController {
 		@CurrentUser() userId: string,
 		@Body() dto: CreateInitiativeDto
 	) {
-		return this.communitiesClient.call('createInitiative', {
+		const response = await this.communitiesClient.call('createInitiative', {
 			communityId,
 			userId,
 			...dto,
 			wholesaleTiers: dto.wholesaleTiers || []
 		})
+
+		await this.escrowClient.call('createEscrow', {
+			initiativeId: response.initiative!.id,
+			organizerUserId: userId
+		})
+
+		return response
 	}
 
 	@ApiBearerAuth()
@@ -49,22 +57,6 @@ export class InitiativesController {
 	async getInitiative(@Param('initiativeId') initiativeId: string) {
 		return this.communitiesClient.call('getInitiative', {
 			initiativeId
-		})
-	}
-
-	@ApiBearerAuth()
-	@Post(':initiativeId/contribute')
-	@Protected()
-	@ApiOperation({ summary: 'Contribute to an initiative' })
-	async contribute(
-		@Param('initiativeId') initiativeId: string,
-		@CurrentUser() userId: string,
-		@Body() dto: ContributeToInitiativeDto
-	) {
-		return this.communitiesClient.call('contributeToInitiative', {
-			initiativeId,
-			userId,
-			amount: dto.amount
 		})
 	}
 }
