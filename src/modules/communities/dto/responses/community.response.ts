@@ -1,5 +1,19 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 
+// TODO: use LocationResponse in CommunityResponse and refactor
+export class LocationResponse {
+	@ApiPropertyOptional({ example: 'UA' })
+	country?: string
+
+	@ApiPropertyOptional({ example: 'Kyiv' })
+	city?: string
+
+	@ApiPropertyOptional({ example: 'Khreshchatyk' })
+	street?: string
+
+	@ApiPropertyOptional({ example: '12' })
+	house?: string
+}
 export class CommunityResponse {
 	@ApiProperty({ example: 'A7h9Z5wQpLy0_2mT' })
 	id!: string
