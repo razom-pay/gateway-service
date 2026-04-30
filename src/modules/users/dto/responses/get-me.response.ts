@@ -25,4 +25,9 @@ export class GetMeResponse {
 		example: 'https://razom-pay.ua/users/avatar.jpg'
 	})
 	avatarUrl?: string
+
+	@ApiPropertyOptional({
+		example: 'acct_1QeKQfAAbbCCDDEE'
+	})
+	stripeAccountId?: string
 }
