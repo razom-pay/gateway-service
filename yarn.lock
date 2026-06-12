@@ -1898,16 +1898,16 @@
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
 "@razom-pay/common@^1.1.9":
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/@razom-pay/common/-/common-1.1.9.tgz#def7685a374527f5b22c297f0b79844acebe4bba"
-  integrity sha512-qBjXu8P1nd6tO8ygYt+zawiNYM9E3Drnz9tqQ0bIDbUPW9nQ9/uDk8mFPqy5Co9xQmhQsjUzCc71ZSohKf9TSQ==
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/@razom-pay/common/-/common-1.1.10.tgz#1075fbc10b186b86dfa76a857a54e7cf620880c2"
+  integrity sha512-0dk/7Wc553KwWOdknrtmsbgEn7QO1NKZU28mtiInmVgQysrVI+wKuMmD8wBRx/TahHQCPHzdoEUwd94Dl0z8dA==
   dependencies:
     "@razom-pay/contracts" "^1.2.2"
 
 "@razom-pay/contracts@^1.2.2", "@razom-pay/contracts@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@razom-pay/contracts/-/contracts-1.2.6.tgz#52e8c09b4bf8d7dce168ec288844d8b8a8195bd4"
-  integrity sha512-dbWXbuWrPWg40CVTBQIn0z3yi6rXNPMf8Y//bBUSWfaFFJ7NEr6nPqe9A6krb5Zc9veGGDjdHUKb4fuHjnr3+g==
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@razom-pay/contracts/-/contracts-1.2.7.tgz#10f95bef2db51b9b008ca8c84bae8dedc384ec12"
+  integrity sha512-orFv/VeZeN26OxyKbX7OIBJwd0LtHuioZhUah3wUTGEipX3G6+kyrHIVo3G3xsfZC6sCeJuWichnaNyG/psURA==
   dependencies:
     "@nestjs/microservices" "^11.1.17"
     rxjs "^7.8.2"
