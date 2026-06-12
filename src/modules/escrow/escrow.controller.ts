@@ -138,9 +138,13 @@ export class EscrowController {
 	@ApiOperation({
 		summary: 'Manually trigger settlement for an initiative escrow'
 	})
-	async settle(@Param('initiativeId') initiativeId: string) {
+	async settle(
+		@Param('initiativeId') initiativeId: string,
+		@CurrentUser() userId: string
+	) {
 		const res = await this.escrowClient.call('settleEscrow', {
-			initiativeId
+			initiativeId,
+			userId
 		})
 		const r = res as any
 		return { escrow: normalizeEscrow(r.escrow) }
